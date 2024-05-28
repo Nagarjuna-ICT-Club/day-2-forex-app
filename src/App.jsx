@@ -25,15 +25,21 @@ function App() {
         <h2>Day 2 | Forex-App</h2>
         <div>
           <p>Date: {data?.date} </p>
+          <div className='flex gap-4 justify-center flex-wrap w-full' >
           {
             data.rates?.map((rate,key)=>{
-              return <div key={key} className='flex gap-2'>
+              return  <div className='my-4 w-1/4'>
+
+                   <div key={key} className='flex gap-2 bg-gray-200 rounded-lg p-2.5 table-auto border-collapse'>
                   <p>{rate.currency.name}</p>
                   <p>{rate.buy}</p>
                   <p>{rate.sell}</p>
               </div>
+              </div>
             })
           }
+          </div>
+          
         </div>
         </div>
     </>
