@@ -21,6 +21,54 @@ function App() {
         console.error('Error fetching data:', error);
       });
   }
+  const extra = {
+    "currency_symbols": {
+      "INR": "₹",
+      "USD": "$",
+      "EUR": "€",
+      "GBP": "£",
+      "CHF": "CHF",
+      "AUD": "A$",
+      "CAD": "C$",
+      "SGD": "S$",
+      "JPY": "¥",
+      "CNY": "¥",
+      "SAR": "ر.س",
+      "QAR": "ر.ق",
+      "THB": "฿",
+      "AED": "د.إ",
+      "MYR": "RM",
+      "KRW": "₩",
+      "SEK": "kr",
+      "DKK": "kr",
+      "HKD": "HK$",
+      "KWD": "د.ك",
+      "BHD": "د.ب"
+    },
+    "currency_flags": {
+      "INR": "https://www.countryflags.com/wp-content/uploads/india-flag-png-large.png",
+      "USD": "https://www.countryflags.com/wp-content/uploads/united-states-of-america-flag-png-large.png",
+      "EUR": "https://www.countryflags.com/wp-content/uploads/europe-flag-jpg-xl.jpg",
+      "GBP": "https://www.countryflags.com/wp-content/uploads/united-kingdom-flag-png-large.png",
+      "CHF": "https://www.countryflags.com/wp-content/uploads/switzerland-flag-png-large.png",
+      "AUD": "https://www.countryflags.com/wp-content/uploads/flag-jpg-xl-9-2048x1024.jpg",
+      "CAD": "https://www.countryflags.com/wp-content/uploads/canada-flag-png-large.png",
+      "SGD": "https://www.countryflags.com/wp-content/uploads/singapore-flag-png-large.png",
+      "JPY": "https://www.countryflags.com/wp-content/uploads/japan-flag-png-large.png",
+      "CNY": "https://www.countryflags.com/wp-content/uploads/china-flag-png-large.png",
+      "SAR": "https://www.countryflags.com/wp-content/uploads/saudi-arabia-flag-png-large.png",
+      "QAR": "https://www.countryflags.com/wp-content/uploads/qatar-flag-png-large.png",
+      "THB": "https://www.countryflags.com/wp-content/uploads/thailand-flag-png-large.png",
+      "AED": "https://www.countryflags.com/wp-content/uploads/united-arab-emirates-flag-png-large.png",
+      "MYR": "https://www.countryflags.com/wp-content/uploads/malaysia-flag-png-large.png",
+      "KRW": "https://www.countryflags.com/wp-content/uploads/south-korea-flag-png-large.png",
+      "SEK": "https://www.countryflags.com/wp-content/uploads/sweden-flag-png-large.png",
+      "DKK": "https://www.countryflags.com/wp-content/uploads/denmark-flag-png-large.png",
+      "HKD": "https://www.countryflags.com/wp-content/uploads/hongkong-flag-jpg-xl.jpg",
+      "KWD": "https://www.countryflags.com/wp-content/uploads/kuwait-flag-png-large.png",
+      "BHD": "https://www.countryflags.com/wp-content/uploads/flag-jpg-xl-13-2048x1229.jpg"
+    }
+  }
 
   return (
     <div className="container mx-auto mt-8 px-4">
@@ -37,9 +85,17 @@ function App() {
           <tbody className="text-black-600 text-sm font-light">
             {data.rates.map((rate, key) => (
               <tr key={key} className="border-b border-grey-400">
-                <td className="py-3 px-6 bg-red-300 text-left text-black-600">{rate.currency.name}</td>
-                <td className="py-3 px-6 bg-green-300 text-left text-black-600">{rate.buy}</td>
-                <td className="py-3 px-6 bg-blue-300 text-left text-black-600">{rate.sell}</td>
+                <td className="py-3 px-6 bg-red-300 text-left text-black-600 flex gap-4 items-center font-bold">
+                  <img src={extra.currency_flags[rate.currency.iso3]} alt="" srcset="" width={80} />
+                  {rate.currency.name}</td>
+                <td className="py-3 px-6 bg-green-300 text-left text-black-600">
+                <p className='py-1'>{extra.currency_symbols[rate.currency.iso3]}
+                &nbsp;
+                  {rate.buy}</p></td>
+                <td className="py-3 px-6 bg-blue-300 text-left text-black-600">
+                <p className='py-1'>{extra.currency_symbols[rate.currency.iso3]}
+                  &nbsp;
+                  {rate.sell}</p></td>
               </tr>
             ))}
           </tbody>
