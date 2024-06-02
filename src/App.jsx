@@ -21,6 +21,7 @@ function App() {
         console.error('Error fetching data:', error);
       });
   }
+  
   const extra = {
     "currency_symbols": {
       "INR": "₹",
@@ -72,30 +73,28 @@ function App() {
 
   return (
     <div className="container mx-auto mt-8 px-4">
-      <h2 className="text-3xl text-blue-500 mb-4 flex font-sans font-bold justify-center">Day 2 | Forex-App -Sanjay ({data?.date})</h2>
+      <h2 className="text-3xl text-blue-900 mb-4 flex font-sans font-bold justify-center">Foreign Exchange App -Sanjay</h2>
       <div className="bg-white shadow-md rounded my-6">
         <table className="min-w-max w-full table-auto">
           <thead>
             <tr className="bg-gray-200 text-black-600 uppercase text-sm leading-normal">
-              <th className="py-3 px-6 bg-red-600 text-left text-white">Currency</th>
+              <th className="py-3 px-6 bg-gray-600 text-left text-white">Currency</th>
               <th className="py-3 px-6 bg-green-600 text-left text-white">Buy</th>
-              <th className="py-3 px-6 bg-blue-600 text-left text-white">Sell</th>
+              <th className="py-3 px-6 bg-red-600 text-left text-white">Sell</th>
             </tr>
           </thead>
           <tbody className="text-black-600 text-sm font-light">
             {data.rates.map((rate, key) => (
               <tr key={key} className="border-b border-grey-400">
-                <td className="py-3 px-6 bg-red-300 text-left text-black-600 flex gap-4 items-center font-bold">
+                <td className="py-3 px-6 bg-gray-300 text-left text-black-600 flex gap-4 items-center font-bold">
                   <img src={extra.currency_flags[rate.currency.iso3]} alt="" srcset="" width={80} />
-                  {rate.currency.name}</td>
-                <td className="py-3 px-6 bg-green-300 text-left text-black-600">
-                <p className='py-1'>{extra.currency_symbols[rate.currency.iso3]}
-                &nbsp;
-                  {rate.buy}</p></td>
-                <td className="py-3 px-6 bg-blue-300 text-left text-black-600">
-                <p className='py-1'>{extra.currency_symbols[rate.currency.iso3]}
-                  &nbsp;
-                  {rate.sell}</p></td>
+                  {rate.currency.name} &nbsp;
+                  ({extra.currency_symbols[rate.currency.iso3]}&nbsp;{rate.currency.unit})
+                  </td>
+                <td className="py-3 px-6 bg-green-300 text-left text-black-600 font-sans font-bold">
+                  NRs. {rate.buy}</td>
+                <td className="py-3 px-6 bg-red-300 text-left text-black-600 font-sans font-bold">
+                  NRs. {rate.sell}</td>
               </tr>
             ))}
           </tbody>
